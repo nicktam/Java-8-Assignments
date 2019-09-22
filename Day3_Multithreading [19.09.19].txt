@@ -1,0 +1,66 @@
+/*  1) create a multi-threaded application by using  "extends Thread " method.
+ * create 2 threads. they should display characters from A to J.*/
+
+public class Question_1 extends Thread
+{
+	synchronized static void disp1()
+	{
+		for(char i=65; i<75; i++)
+		{System.out.println("static " +i);
+				}
+	try
+	{Thread.sleep(200);
+	}
+	catch (Exception ie)
+	{
+	}
+	}
+
+public void run()
+{
+	disp1();
+}
+public static void main(String args[])
+{
+	Question_1 q = new Question_1();
+	Question_1 q1 = new Question_1();
+	Thread t1 = new Thread(q);
+	Thread t2 = new Thread(q1);
+	t1.start();
+	t2.start();
+}
+}
+  
+***********************************************************
+/* 2) above program  using "implements Runnable" method.*/
+
+public class Question_1 implements Runnable
+{
+	synchronized static void disp1()
+	{
+		for(char i=65; i<75; i++)
+		{System.out.println("static " +i);
+				}
+	try
+	{Thread.sleep(200);
+	}
+	catch (Exception ie)
+	{
+	}
+	}
+
+public void run()
+{
+	disp1();
+}
+public static void main(String args[])
+{
+	Question_1 q = new Question_1();
+	Question_1 q1 = new Question_1();
+	Thread t1 = new Thread(q);
+	Thread t2 = new Thread(q1);
+	t1.start();
+	t2.start();
+}
+}
+                                                

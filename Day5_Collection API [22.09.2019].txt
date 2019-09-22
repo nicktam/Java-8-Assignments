@@ -1,0 +1,286 @@
+//2) create a HashMap.
+//store  prn no. and students name of 10 students inside the HashMap.
+//display it using iterator.
+
+package serialization;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Hashmap
+{
+	public static void main(String args[])
+	{
+		Map<Integer,String> h = new HashMap<Integer,String>();
+	h.put(1, "Aakash");
+	h.put(2, "Fardeen");
+	h.put(3, "Ishaan");
+	h.put(4, "Mahesh");
+	h.put(5, "Rakesh");
+	Set<Entry<Integer, String>> Set = h.entrySet();
+	Iterator<Entry<Integer, String>> i = Set.iterator();
+	{
+		while(i.hasNext())
+		{
+			System.out.println(i.next());
+		}
+
+
+
+		//Map.Entry<Integer, String> me = (Entry<Integer, String>) i.next();
+//	while(i.hasNext())
+//	{
+//		System.out.println(i.next());
+//	}
+//	System.out.print(me.getKey()+ ":");
+//	System.out.println(me.getValue());
+	}
+	}
+}
+
+**************************************************************************
+package serialization;
+
+//4) Define a class "Employee" with following members
+//empid, empname, desig, basic.
+//Define a parameterised constructor which will take all these values while creating an instance.
+//Also define "disp()" method which will display all these details.
+//create 4 employees and save them in "ArrayList".
+//Now save this "ArrayList" in a file.
+//Open file , read "ArrayList" , traverse ArrayList and call "disp()" for all the objects.package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
+class Employee implements Serializable {
+	int Empid;
+	String Empname;
+	String Designation;
+	int Basic_Salary;
+
+	public Employee(int empid, String empname, String designation, int basic_Salary) {
+		super();
+		Empid = empid;
+		Empname = empname;
+		Designation = designation;
+		Basic_Salary = basic_Salary;
+	}
+
+	public int getEmpid() {
+		return Empid;
+	}
+
+	public void setEmpid(int empid) {
+		Empid = empid;
+	}
+
+	public String getEmpname() {
+		return Empname;
+	}
+
+	public void setEmpname(String empname) {
+		Empname = empname;
+	}
+
+	public String getDesignation() {
+		return Designation;
+	}
+
+	public void setDesignation(String designation) {
+		Designation = designation;
+	}
+
+	public int getBasic_Salary() {
+		return Basic_Salary;
+	}
+
+	public void setBasic_Salary(int basic_Salary) {
+		Basic_Salary = basic_Salary;
+	}
+
+	public void disp() {
+		System.out.println("Employee [Empid=" + Empid + ", Empname=" + Empname + ", Designation=" + Designation
+				+ ", Basic_Salary=" + Basic_Salary + "");
+	}
+}
+
+public class EmpDemo {
+	public static final void main(String args[])
+
+	{
+	Employee e1 = new Employee (1, "Ravi", "Peon", 8000); 
+	Employee e2 = new Employee (2, "Suresh", "Watchman", 15000);
+	Employee e3 = new Employee (3, "Nikhil", "Manager", 50000);
+	Employee e4 = new Employee (4, "Swapnil", "CEO", 75000);
+List <Employee> al = new ArrayList <Employee>();
+al.add(e1);
+al.add(e2);
+al.add(e3);
+al.add(e4);
+
+try(FileOutputStream fos = new FileOutputStream("D:\\xyz.txt"))
+{try(ObjectOutputStream oos = new ObjectOutputStream(fos))
+	{oos.writeObject(al);
+	}
+}catch (Exception e)
+{ e.printStackTrace();
+	}
+List <?>ref = null;
+	try(FileInputStream fis = new FileInputStream("D:\\xyz.txt"))
+	{ try (ObjectInputStream ois = new ObjectInputStream(fis))
+	{
+ref= (List<?>) ois.readObject();
+			ref=(ArrayList<?>) ois.readObject(); }
+	}
+
+	catch(Exception e)
+	{ e.printStackTrace();
+	}
+	
+	
+	Iterator<Employee> it2 = al.iterator();
+	while (it2.hasNext());
+	{
+//		System.out.println(it2.next());
+		Employee m=(Employee) it2.next();
+		m.disp();
+		
+	}
+	}
+//	Employee e = new Employee(0, null, null, 0);
+	
+//	e.disp();
+}
+
+*********************************************************
+RUNNING SUCCESSFULLY
+
+package serialization;
+
+//4) Define a class "Employee" with following members
+//empid, empname, desig, basic.
+//Define a parameterised constructor which will take all these values while creating an instance.
+//Also define "disp()" method which will display all these details.
+//create 4 employees and save them in "ArrayList".
+//Now save this "ArrayList" in a file.
+//Open file , read "ArrayList" , traverse ArrayList and call "disp()" for all the objects.package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+class Employee implements Serializable {
+	int Empid;
+	String Empname;
+	String Designation;
+	int Basic_Salary;
+
+	public Employee(int empid, String empname, String designation, int basic_Salary) {
+		super();
+		Empid = empid;
+		Empname = empname;
+		Designation = designation;
+		Basic_Salary = basic_Salary;
+	}
+
+	public int getEmpid() {
+		return Empid;
+	}
+
+	public void setEmpid(int empid) {
+		Empid = empid;
+	}
+
+	public String getEmpname() {
+		return Empname;
+	}
+
+	public void setEmpname(String empname) {
+		Empname = empname;
+	}
+
+	public String getDesignation() {
+		return Designation;
+	}
+
+	public void setDesignation(String designation) {
+		Designation = designation;
+	}
+
+	public int getBasic_Salary() {
+		return Basic_Salary;
+	}
+
+	public void setBasic_Salary(int basic_Salary) {
+		Basic_Salary = basic_Salary;
+	}
+
+	public void disp() {
+		System.out.println("Employee [Empid=" + Empid + ", Empname=" + Empname + ", Designation=" + Designation
+				+ ", Basic_Salary=" + Basic_Salary + "");
+	}
+}
+
+public class EmpDemo {
+	public static final void main(String args[])
+
+	{
+		Employee e1 = new Employee(1, "Ravi", "Peon", 8000);
+		Employee e2 = new Employee(2, "Suresh", "Watchman", 15000);
+		Employee e3 = new Employee(3, "Nikhil", "Manager", 50000);
+		Employee e4 = new Employee(4, "Swapnil", "CEO", 75000);
+
+		List<Employee> al = new ArrayList<Employee>();
+		al.add(e1);
+		al.add(e2);
+		al.add(e3);
+		al.add(e4);
+		//System.out.println("list added");
+		try (FileOutputStream fos = new FileOutputStream("D:\\xyz.txt")) {
+			try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+				oos.writeObject(al);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<?> ref = null;
+		try (FileInputStream fis = new FileInputStream("D:\\xyz.txt")) {
+			try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+				//ref = (List<?>) ois.readObject();
+				ref = (ArrayList<?>) ois.readObject();
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		//System.out.println("b4 iterator");
+		Iterator<Employee> it2 = al.iterator();
+		while (it2.hasNext())
+			
+		{	//System.out.println("b4 disp");
+			// System.out.println(it2.next());
+			Employee m = (Employee) it2.next();
+			m.disp();
+			
+		}//System.out.println("after disp");
+	}
+	// Employee e = new Employee(0, null, null, 0);
+
+	// e.disp();
+}
+
